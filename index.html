@@ -7,6 +7,7 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF5722">
     <style>
+        /* (CSS เหมือนเดิมทุกอย่างครับ) */
         :root {
             --primary: #FF5722;
             --bg-color: #f4f7f6;
@@ -22,55 +23,38 @@
             overscroll-behavior-y: none;
         }
         .app-container {
-            max-width: 480px;
-            margin: 0 auto;
-            background: var(--white);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 480px; margin: 0 auto; background: var(--white);
+            height: 100vh; display: flex; flex-direction: column; box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        /* Header ปรับให้มีปุ่มตั้งค่าและแจ้งเตือน */
         header {
-            background: var(--primary); color: var(--white);
-            padding: 15px; display: flex; justify-content: space-between; align-items: center;
+            background: var(--primary); color: var(--white); padding: 15px; 
+            display: flex; justify-content: space-between; align-items: center;
             font-size: 1.2rem; font-weight: bold; flex-shrink: 0;
         }
         .header-icons span { cursor: pointer; margin-left: 15px; font-size: 1.2rem; }
-        
-        .content {
-            flex-grow: 1; overflow-y: auto; padding: 20px; padding-bottom: 80px;
-        }
+        .content { flex-grow: 1; overflow-y: auto; padding: 20px; padding-bottom: 80px; }
         .page { display: none; }
         .active-page { display: block; }
-        
         input, button, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid var(--gray); box-sizing: border-box; font-size: 1rem; }
         button { background: var(--primary); color: var(--white); border: none; font-weight: bold; cursor: pointer; }
         button:active { opacity: 0.8; }
         .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
         .btn-small { padding: 6px 12px; font-size: 0.9rem; width: auto; margin: 0; }
-        
         .card { background: var(--bg-color); padding: 15px; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
         .profile-pic { width: 50px; height: 50px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;}
         .card-info { flex-grow: 1; margin-left: 15px; }
         .card-info h4 { margin: 0 0 5px 0; }
         .card-info p { margin: 0; font-size: 0.85rem; color: #666; }
-        
         .chat-box { border: 1px solid #eee; height: 60vh; overflow-y: auto; padding: 10px; border-radius: 8px; background: #fafafa; margin-bottom: 10px; display: flex; flex-direction: column; }
         .msg { margin-bottom: 10px; padding: 10px; border-radius: 8px; max-width: 80%; word-wrap: break-word;}
         .msg.me { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 0;}
         .msg.other { background: #e0e0e0; align-self: flex-start; border-bottom-left-radius: 0;}
-
         .navbar {
             display: none; justify-content: space-around; background: var(--white);
-            border-top: 1px solid #ddd; padding: 10px 0;
-            position: fixed; bottom: 0; width: 100%; max-width: 480px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            border-top: 1px solid #ddd; padding: 10px 0; position: fixed; bottom: 0; width: 100%; max-width: 480px; box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
         }
         .navbar button { width: auto; background: none; color: #666; padding: 5px 10px; margin: 0; border: none; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; gap: 4px;}
         .navbar button.active-nav { color: var(--primary); font-weight: bold; }
-        
-        /* แท็บสำหรับหน้าประวัติ */
         .tabs { display: flex; margin-bottom: 15px; border-bottom: 2px solid #ddd; }
         .tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; font-weight: bold; color: #666; }
         .tab.active { border-bottom: 3px solid var(--primary); color: var(--primary); }
@@ -91,11 +75,35 @@
         <div id="login" class="page active-page">
             <div style="text-align: center; margin-bottom: 30px; margin-top: 50px;">
                 <h1 style="color: var(--primary); margin-bottom: 5px;">💪 FitBuddy</h1>
-                <p>หาเพื่อนออกกำลังกายใกล้คุณ</p>
+                <p>เข้าสู่ระบบเพื่อหาเพื่อนออกกำลังกาย</p>
             </div>
-            <input type="text" id="username" placeholder="ชื่อผู้ใช้งานของคุณ">
+            <input type="text" id="username" placeholder="อีเมล หรือ ชื่อผู้ใช้งาน">
             <input type="password" placeholder="รหัสผ่าน">
             <button onclick="login()">เข้าสู่ระบบ</button>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <p style="text-align: center; margin-bottom: 10px; color: #666;">ยังไม่มีบัญชีใช่ไหม?</p>
+            <button class="btn-outline" onclick="nav('register')">สมัครสมาชิกใหม่</button>
+        </div>
+
+        <div id="register" class="page">
+            <div style="text-align: center; margin-bottom: 20px; margin-top: 20px;">
+                <h2 style="color: var(--primary); margin-bottom: 5px;">📝 สร้างบัญชีใหม่</h2>
+                <p>กรอกข้อมูลเพื่อเข้าร่วม FitBuddy</p>
+            </div>
+            <label style="font-size: 0.9rem; color: #666;">ชื่อที่จะใช้แสดง (Display Name)</label>
+            <input type="text" id="reg-name" placeholder="เช่น คุณเอก, น้องแนน">
+            
+            <label style="font-size: 0.9rem; color: #666;">อีเมล</label>
+            <input type="email" id="reg-email" placeholder="example@email.com">
+            
+            <label style="font-size: 0.9rem; color: #666;">รหัสผ่าน</label>
+            <input type="password" id="reg-password" placeholder="ตั้งรหัสผ่าน 6 ตัวอักษรขึ้นไป">
+            
+            <label style="font-size: 0.9rem; color: #666;">ยืนยันรหัสผ่าน</label>
+            <input type="password" id="reg-confirm" placeholder="กรอกรหัสผ่านอีกครั้ง">
+            
+            <button onclick="registerUser()" style="margin-top: 15px;">สมัครสมาชิกเลย!</button>
+            <button class="btn-outline" onclick="nav('login')">⬅ กลับไปหน้าเข้าสู่ระบบ</button>
         </div>
 
         <div id="home" class="page">
@@ -105,25 +113,17 @@
                     <h4 id="user-name-display">ผู้ใช้งาน</h4>
                     <p>สถานะ: พร้อมลุยเสมอ! 🔥</p>
                 </div>
-                <button class="btn-outline btn-small" onclick="nav('profile-edit')">แก้ไข</button>
             </div>
-
             <button onclick="nav('create-post')" style="font-size: 1.1rem; box-shadow: 0 4px 6px rgba(255,87,34,0.3);">➕ โพสต์หาเพื่อนออกกำลังกาย</button>
             <button class="btn-outline" onclick="nav('history')">📜 ประวัติและเพื่อนของฉัน</button>
-
             <h4 style="margin-top: 20px;">สถานที่ยอดนิยมใกล้คุณ</h4>
-            <div class="card">
-                <div class="card-info"><h4>📍 สวนลุมพินี</h4><p>ห่างออกไป 1.2 กม.</p></div>
-            </div>
-            <div class="card">
-                <div class="card-info"><h4>📍 สวนเบญจกิติ</h4><p>ห่างออกไป 3.5 กม.</p></div>
-            </div>
+            <div class="card"><div class="card-info"><h4>📍 สวนลุมพินี</h4><p>ห่างออกไป 1.2 กม.</p></div></div>
+            <div class="card"><div class="card-info"><h4>📍 สวนเบญจกิติ</h4><p>ห่างออกไป 3.5 กม.</p></div></div>
         </div>
 
         <div id="find" class="page">
             <h3>เพื่อนที่อยู่ใกล้คุณ</h3>
-            <div id="feed-container">
-                </div>
+            <div id="feed-container"></div>
         </div>
 
         <div id="create-post" class="page">
@@ -137,12 +137,8 @@
                 <option value="ปั่นจักรยาน">🚴 ปั่นจักรยาน</option>
                 <option value="โยคะ">🧘‍♀️ โยคะ</option>
             </select>
-            <label>สถานที่</label>
-            <input type="text" id="post-loc" placeholder="เช่น สวนลุมพินี, ฟิตเนสใกล้บ้าน">
-            <label>เวลา</label>
-            <input type="text" id="post-time" placeholder="เช่น วันนี้ 18:00, พรุ่งนี้เช้า">
-            <label>รายละเอียดเพิ่มเติม</label>
-            <textarea id="post-desc" rows="3" placeholder="เช่น หาคนวิ่งเพซ 6, เล่นเวทมือใหม่ครับ"></textarea>
+            <label>สถานที่</label><input type="text" id="post-loc" placeholder="เช่น สวนลุมพินี">
+            <label>เวลา</label><input type="text" id="post-time" placeholder="เช่น วันนี้ 18:00">
             <button onclick="submitPost()">โพสต์หาเพื่อน</button>
         </div>
 
@@ -152,19 +148,9 @@
                 <div class="tab active" id="tab-myposts" onclick="switchHistoryTab('myposts')">โพสต์ของฉัน</div>
                 <div class="tab" id="tab-mymatches" onclick="switchHistoryTab('mymatches')">ตอบรับเพื่อน</div>
             </div>
-            
-            <div id="history-posts-container">
-                </div>
-            
+            <div id="history-posts-container"></div>
             <div id="history-matches-container" style="display: none;">
-                <div class="card">
-                    <div class="profile-pic">🏊‍♂️</div>
-                    <div class="card-info">
-                        <h4>คุณบอย (ว่ายน้ำ)</h4>
-                        <p>📍 สระว่ายน้ำ กกท. | 🕒 สัปดาห์ที่แล้ว</p>
-                    </div>
-                    <button class="btn-small" onclick="openChat()">แชท</button>
-                </div>
+                <div class="card"><div class="profile-pic">🏊‍♂️</div><div class="card-info"><h4>คุณบอย (ว่ายน้ำ)</h4><p>📍 สระว่ายน้ำ | 🕒 สัปดาห์ที่แล้ว</p></div><button class="btn-small" onclick="openChat()">แชท</button></div>
             </div>
         </div>
 
@@ -191,31 +177,8 @@
             </div>
         </div>
 
-        <div id="settings" class="page">
-            <button class="btn-outline" onclick="nav('home')">⬅ กลับหน้าหลัก</button>
-            <h3>⚙️ การตั้งค่า</h3>
-            <button class="btn-outline" style="text-align: left;">👤 แก้ไขโปรไฟล์ส่วนตัว</button>
-            <button class="btn-outline" style="text-align: left;">🔔 ตั้งค่าการแจ้งเตือน</button>
-            <button class="btn-outline" style="text-align: left;">🔒 ความเป็นส่วนตัวและรหัสผ่าน</button>
-            <button style="background: #d32f2f; margin-top: 20px;" onclick="logout()">🚪 ออกจากระบบ</button>
-        </div>
-
-        <div id="notifications" class="page">
-            <button class="btn-outline" onclick="nav('home')">⬅ กลับหน้าหลัก</button>
-            <h3>🔔 การแจ้งเตือน</h3>
-            <div class="card" style="background: #e3f2fd;">
-                <div class="card-info">
-                    <h4>💬 ข้อความใหม่จาก คุณแนน</h4>
-                    <p>เมื่อ 5 นาทีที่แล้ว</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <h4>⭐ คุณบอย รีวิวคุณ 5 ดาว</h4>
-                    <p>เมื่อ 2 วันที่แล้ว</p>
-                </div>
-            </div>
-        </div>
+        <div id="settings" class="page"><button class="btn-outline" onclick="nav('home')">⬅ กลับ</button><h3>⚙️ การตั้งค่า</h3><button style="background: #d32f2f; margin-top: 20px;" onclick="logout()">🚪 ออกจากระบบ</button></div>
+        <div id="notifications" class="page"><button class="btn-outline" onclick="nav('home')">⬅ กลับ</button><h3>🔔 การแจ้งเตือน</h3><p>ไม่มีการแจ้งเตือนใหม่</p></div>
 
     </div>
 
@@ -229,36 +192,30 @@
 <script>
     // ตัวแปรเก็บข้อมูล
     let currentUser = "ผู้ใช้งาน";
-    
-    // ข้อมูลจำลองของโพสต์ในหน้า Feed
     let feedPosts = [
         { id: 1, name: "คุณเอก", sport: "🏃‍♂️ วิ่ง/มาราธอน", loc: "สวนลุมพินี", time: "วันนี้ 18:00", emoji: "🏃‍♂️", isMine: false },
         { id: 2, name: "คุณแนน", sport: "🏋️‍♀️ เวทเทรนนิ่ง", loc: "ฟิตเนสเซ็นทรัล", time: "เสาร์นี้เช้า", emoji: "🏋️‍♀️", isMine: false }
     ];
-
-    // ข้อมูลโพสต์ของเราเอง
     let myPosts = [];
 
-    // เริ่มต้นระบบ
-    function init() {
-        renderFeed();
-        renderMyPosts();
-    }
+    function init() { renderFeed(); renderMyPosts(); }
 
-    // นำทาง
     function nav(pageId) {
         document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
         document.getElementById(pageId).classList.add('active-page');
-        
         document.querySelectorAll('.navbar button').forEach(btn => btn.classList.remove('active-nav'));
         let navBtn = document.getElementById('nav-' + pageId);
         if(navBtn) navBtn.classList.add('active-nav');
     }
 
-    // เข้าสู่ระบบ
+    // ฟังก์ชันเข้าสู่ระบบ
     function login() {
         const userInput = document.getElementById('username').value;
-        currentUser = userInput || "ผู้ใช้ใหม่";
+        if(!userInput) {
+            alert("กรุณากรอกชื่อผู้ใช้งานก่อนครับ");
+            return;
+        }
+        currentUser = userInput;
         document.getElementById('user-name-display').innerText = currentUser;
         
         document.getElementById('app-header').style.display = 'flex';
@@ -266,136 +223,110 @@
         nav('home');
     }
 
-    // ออกจากระบบ
+    // ฟังก์ชันสมัครสมาชิก
+    function registerUser() {
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const password = document.getElementById('reg-password').value;
+        const confirmPass = document.getElementById('reg-confirm').value;
+
+        // ตรวจสอบความถูกต้องของข้อมูลเบื้องต้น
+        if (!name || !email || !password || !confirmPass) {
+            alert("กรุณากรอกข้อมูลให้ครบทุกช่องครับ");
+            return;
+        }
+        if (password !== confirmPass) {
+            alert("รหัสผ่านและการยืนยันรหัสผ่านไม่ตรงกัน กรุณาลองอีกครั้งครับ");
+            return;
+        }
+        if (password.length < 6) {
+            alert("รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษรครับ");
+            return;
+        }
+
+        // จำลองการสมัครเสร็จสิ้นและเข้าสู่ระบบทันที
+        currentUser = name;
+        document.getElementById('user-name-display').innerText = currentUser;
+        
+        alert("🎉 สมัครสมาชิกสำเร็จ! ยินดีต้อนรับคุณ " + currentUser);
+        
+        // ล้างค่าในฟอร์ม
+        document.getElementById('reg-name').value = '';
+        document.getElementById('reg-email').value = '';
+        document.getElementById('reg-password').value = '';
+        document.getElementById('reg-confirm').value = '';
+
+        // พาไปหน้าหลัก
+        document.getElementById('app-header').style.display = 'flex';
+        document.getElementById('navbar').style.display = 'flex';
+        nav('home');
+    }
+
     function logout() {
         document.getElementById('app-header').style.display = 'none';
         document.getElementById('navbar').style.display = 'none';
+        document.getElementById('username').value = '';
         nav('login');
     }
 
-    // สร้างโพสต์ใหม่
     function submitPost() {
         const sport = document.getElementById('post-sport').value;
         const loc = document.getElementById('post-loc').value || "ไม่ระบุสถานที่";
         const time = document.getElementById('post-time').value || "ไม่ระบุเวลา";
         
-        const newPost = {
-            id: Date.now(),
-            name: currentUser + " (ฉัน)",
-            sport: sport,
-            loc: loc,
-            time: time,
-            emoji: "😎",
-            isMine: true
-        };
-
-        // เพิ่มลงใน Feed รวม และ ประวัติของฉัน
-        feedPosts.unshift(newPost); 
-        myPosts.unshift(newPost);
+        const newPost = { id: Date.now(), name: currentUser + " (ฉัน)", sport: sport, loc: loc, time: time, emoji: "😎", isMine: true };
+        feedPosts.unshift(newPost); myPosts.unshift(newPost);
+        renderFeed(); renderMyPosts();
         
-        // อัปเดตหน้าจอ
-        renderFeed();
-        renderMyPosts();
-        
-        // เคลียร์ฟอร์มและไปหน้าประวัติ
-        document.getElementById('post-loc').value = '';
-        document.getElementById('post-time').value = '';
-        document.getElementById('post-desc').value = '';
-        
-        alert("โพสต์หาเพื่อนสำเร็จแล้ว!");
-        nav('find'); // เด้งไปหน้าหาเพื่อนให้เห็นโพสต์ตัวเอง
+        document.getElementById('post-loc').value = ''; document.getElementById('post-time').value = '';
+        alert("โพสต์หาเพื่อนสำเร็จแล้ว!"); nav('find');
     }
 
-    // เรนเดอร์หน้า Feed (หาเพื่อน)
     function renderFeed() {
-        const container = document.getElementById('feed-container');
-        container.innerHTML = '';
-        
+        const container = document.getElementById('feed-container'); container.innerHTML = '';
         feedPosts.forEach(post => {
             container.innerHTML += `
                 <div class="card" style="${post.isMine ? 'border: 1px solid var(--primary);' : ''}">
                     <div class="profile-pic">${post.emoji}</div>
                     <div class="card-info">
                         <h4>${post.name} ${post.isMine ? '<span style="color:var(--primary); font-size:0.7rem;">[โพสต์ของคุณ]</span>' : ''}</h4>
-                        <p>${post.sport}</p>
-                        <p>📍 ${post.loc} | 🕒 ${post.time}</p>
+                        <p>${post.sport}</p><p>📍 ${post.loc} | 🕒 ${post.time}</p>
                     </div>
                     ${!post.isMine ? `<button class="btn-small" onclick="viewProfile('${post.name}', '${post.sport}', '${post.loc}', '${post.emoji}')">ดูโปรไฟล์</button>` : `<button class="btn-small btn-outline" disabled>โพสต์ของคุณ</button>`}
-                </div>
-            `;
+                </div>`;
         });
     }
 
-    // เรนเดอร์หน้าประวัติโพสต์ของฉัน
     function renderMyPosts() {
-        const container = document.getElementById('history-posts-container');
-        container.innerHTML = '';
-        
-        if(myPosts.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:#999; margin-top:20px;">คุณยังไม่ได้โพสต์หาเพื่อน</p>';
-            return;
-        }
-
+        const container = document.getElementById('history-posts-container'); container.innerHTML = '';
+        if(myPosts.length === 0) { container.innerHTML = '<p style="text-align:center; color:#999;">ยังไม่ได้โพสต์หาเพื่อน</p>'; return; }
         myPosts.forEach(post => {
-            container.innerHTML += `
-                <div class="card" style="border-left: 4px solid var(--primary);">
-                    <div class="card-info">
-                        <h4>${post.sport}</h4>
-                        <p>📍 ${post.loc} | 🕒 ${post.time}</p>
-                    </div>
-                    <button class="btn-small btn-outline" onclick="alert('ลบโพสต์แล้ว');">ลบ</button>
-                </div>
-            `;
+            container.innerHTML += `<div class="card" style="border-left: 4px solid var(--primary);"><div class="card-info"><h4>${post.sport}</h4><p>📍 ${post.loc} | 🕒 ${post.time}</p></div></div>`;
         });
     }
 
-    // สลับแท็บในหน้าประวัติ
     function switchHistoryTab(tabName) {
-        document.getElementById('tab-myposts').classList.remove('active');
-        document.getElementById('tab-mymatches').classList.remove('active');
-        document.getElementById('history-posts-container').style.display = 'none';
-        document.getElementById('history-matches-container').style.display = 'none';
-
-        if(tabName === 'myposts') {
-            document.getElementById('tab-myposts').classList.add('active');
-            document.getElementById('history-posts-container').style.display = 'block';
-        } else {
-            document.getElementById('tab-mymatches').classList.add('active');
-            document.getElementById('history-matches-container').style.display = 'block';
-        }
+        document.getElementById('tab-myposts').classList.remove('active'); document.getElementById('tab-mymatches').classList.remove('active');
+        document.getElementById('history-posts-container').style.display = 'none'; document.getElementById('history-matches-container').style.display = 'none';
+        if(tabName === 'myposts') { document.getElementById('tab-myposts').classList.add('active'); document.getElementById('history-posts-container').style.display = 'block'; }
+        else { document.getElementById('tab-mymatches').classList.add('active'); document.getElementById('history-matches-container').style.display = 'block'; }
     }
 
-    // ฟังก์ชันอื่นๆ (ดูโปรไฟล์, แชท)
     function viewProfile(name, sport, loc, emoji) {
-        document.getElementById('prof-name').innerText = name;
-        document.getElementById('prof-sport').innerText = sport;
-        document.getElementById('prof-loc').innerText = "📍 " + loc;
-        document.getElementById('prof-pic').innerText = emoji;
-        document.getElementById('chat-title').innerText = "แชทกับ " + name;
-        nav('profile');
+        document.getElementById('prof-name').innerText = name; document.getElementById('prof-sport').innerText = sport;
+        document.getElementById('prof-loc').innerText = "📍 " + loc; document.getElementById('prof-pic').innerText = emoji;
+        document.getElementById('chat-title').innerText = "แชทกับ " + name; nav('profile');
     }
 
     function openChat() { nav('chat'); }
-
     function sendMessage() {
-        const input = document.getElementById('chat-input');
-        const text = input.value.trim();
-        if (!text) return;
-        const chatBox = document.getElementById('chat-history');
-        const myMsg = document.createElement('div');
-        myMsg.className = 'msg me'; myMsg.innerText = text;
-        chatBox.appendChild(myMsg);
-        input.value = ''; chatBox.scrollTop = chatBox.scrollHeight;
-        setTimeout(() => {
-            const replyMsg = document.createElement('div');
-            replyMsg.className = 'msg other'; replyMsg.innerText = "ได้เลยครับ เจอกันครับ!";
-            chatBox.appendChild(replyMsg); chatBox.scrollTop = chatBox.scrollHeight;
-        }, 1000);
+        const input = document.getElementById('chat-input'); const text = input.value.trim(); if (!text) return;
+        const chatBox = document.getElementById('chat-history'); const myMsg = document.createElement('div');
+        myMsg.className = 'msg me'; myMsg.innerText = text; chatBox.appendChild(myMsg); input.value = ''; chatBox.scrollTop = chatBox.scrollHeight;
+        setTimeout(() => { const replyMsg = document.createElement('div'); replyMsg.className = 'msg other'; replyMsg.innerText = "ได้เลยครับ เจอกันครับ!"; chatBox.appendChild(replyMsg); chatBox.scrollTop = chatBox.scrollHeight; }, 1000);
     }
 
-    // รันฟังก์ชันเริ่มต้นเมื่อโหลดหน้า
     init();
-
 </script>
 
 </body>
